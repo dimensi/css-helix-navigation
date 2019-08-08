@@ -14,8 +14,6 @@ body {
   width: 300px;
   height: 300px;
   transform-style: preserve-3d;
-  /* border: 1px solid red; */
-  animation: rotateSphere 4s linear infinite;
 }
 
 .plane {
@@ -29,8 +27,8 @@ body {
   margin: auto;
   height: 100%;
   width: 100%;
-  /* border: 1px solid yellow; */
   transform-style: preserve-3d;
+  animation: rotateSphere 10s linear infinite;
 }
 
 .plane li {
@@ -41,17 +39,15 @@ body {
   right: 0;
   margin: auto;
   transform-origin: bottom;
-  /* border: 1px solid green;  */
   box-sizing: border-box;
   transform-style: preserve-3d;
 }
 
 .plane li:after {
-  content: '';
+  content: attr(data-char);
   position: absolute;
-  height: 10px;
-  width: 10px;
-  background: var(--color);
+  font-size: 50px;
+  color: var(--color);
   display: inline-block;
   top: 0;
   left: 0;
@@ -59,12 +55,29 @@ body {
   border-radius: 50%;
 }
 
+.testLetter {
+  font-size: 50px;
+  display: inline-block;
+}
+
 
 @keyframes rotateSphere {
   0% {
-    transform: rotate3d(1, 1, 1, -360deg)
+    transform: rotateX(255deg) rotateY(-75deg) rotate3d(1, 1, 1, 45deg) rotate(0deg)
   }
   100% {
-    transform: rotate3d(0,0,0, 360deg)
+    transform: rotateX(255deg) rotateY(-75deg) rotate3d(1, 1, 1, 45deg) rotate(360deg)
   }
+}
+
+
+.block {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 50%;
+  height: 50%;
 }
