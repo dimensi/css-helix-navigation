@@ -1,5 +1,6 @@
 const SPACE_SIZE = 4;
 const words = ["about", "invest", "company", "build", "explore"];
+// const words = ["компания", "инвест", "команда", "стройка", "изучай"];
 
 const shpere = document.querySelector(".sphere");
 const symbolWidths = getSymbolsWidths();
@@ -33,7 +34,7 @@ setTimeout(() => {
 function createOrbit(words, delta, spaceSize = 4) {
   const ul = document.createElement("ul");
   ul.className = "plane";
-
+  ul.style.transform = 'rotateX(0deg) rotateY(0deg) rotate3d(1, 1, 1, 0deg)'
   const lis = createChars(words, spaceSize, delta);
   ul.append(...lis);
   return ul;
@@ -129,6 +130,6 @@ function selectWord(word, reverse) {
   const el = els[0]
   const lastDeg = parseInt(el.style.transform.replace('rotate(', '').replace('deg)', ''), 10)
   const rotateDeg = lastDeg
-  const rotate = `rotate(${(reverse ? -rotateDeg : rotateDeg) - 75}deg)`
-  orbit.style = `transform: rotateX(245deg) rotateY(-75deg) rotate3d(1, 1, 1, 45deg) ${rotate}`
+  const rotate = `rotate(${(reverse ? -rotateDeg : rotateDeg) - 40}deg)`
+  orbit.style.transform = `rotateX(-90deg) rotateY(-15deg) rotate3d(1, 1, 1, 29deg) ${rotate}`
 }
