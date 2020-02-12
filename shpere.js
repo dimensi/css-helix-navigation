@@ -1,6 +1,5 @@
 const SPACE_SIZE = 4;
 const words = ["about", "invest", "company", "build", "explore"];
-// const words = ["компания", "инвест", "команда", "стройка", "изучай"];
 
 const shpere = document.querySelector(".sphere");
 const symbolWidths = getSymbolsWidths();
