@@ -1,0 +1,27 @@
+{
+  "name": "css-helix-navigation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "shpere.js",
+  "scripts": {
+    "serve": "serve ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimensi/css-helix-navigation.git"
+  },
+  "keywords": [
+    "CSS",
+    "helix",
+    "navigation"
+  ],
+  "author": "Nikita Nafranets <eddimensi@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dimensi/css-helix-navigation/issues"
+  },
+  "homepage": "https://github.com/dimensi/css-helix-navigation#readme",
+  "devDependencies": {
+    "serve": "^11.3.0"
+  }
+}
