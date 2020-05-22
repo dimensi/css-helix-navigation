@@ -45,6 +45,7 @@ body {
   box-sizing: border-box;
   transform-style: preserve-3d;
   cursor: pointer;
+  user-select: none;
 }
 
 .char {
@@ -59,7 +60,7 @@ body {
 }
 
 .char-container--active {
-  --color: #EF634D;
+  --color: #ef634d;
 }
 
 .testLetter {
@@ -68,16 +69,16 @@ body {
   display: inline-block;
 }
 
-
 @keyframes rotateSphere {
   0% {
-    transform: rotateX(255deg) rotateY(-75deg) rotate3d(1, 1, 1, 45deg) rotate(0deg)
+    transform: rotateX(255deg) rotateY(-75deg) rotate3d(1, 1, 1, 45deg)
+      rotate(0deg);
   }
   100% {
-    transform: rotateX(255deg) rotateY(-75deg) rotate3d(1, 1, 1, 45deg) rotate(360deg)
+    transform: rotateX(255deg) rotateY(-75deg) rotate3d(1, 1, 1, 45deg)
+      rotate(360deg);
   }
 }
-
 
 .block {
   position: absolute;
