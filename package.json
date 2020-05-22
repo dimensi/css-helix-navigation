@@ -4,7 +4,7 @@
   "description": "",
   "main": "shpere.js",
   "scripts": {
-    "serve": "serve ."
+    "serve": "npx serve ./src/"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,5 @@
   "bugs": {
     "url": "https://github.com/dimensi/css-helix-navigation/issues"
   },
-  "homepage": "https://github.com/dimensi/css-helix-navigation#readme",
-  "devDependencies": {
-    "serve": "^11.3.0"
-  }
+  "homepage": "https://github.com/dimensi/css-helix-navigation#readme"
 }
