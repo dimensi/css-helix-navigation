@@ -5,35 +5,32 @@ const shpere = document.querySelector(".sphere");
 const symbolWidths = getSymbolsWidths();
 const delta = getDelta(words, SPACE_SIZE);
 const orbit = createOrbit(words, delta, SPACE_SIZE);
-const h = getWidthFromDelta(delta, symbolWidths['height']) * 2;
+const h = getWidthFromDelta(delta, symbolWidths["height"]) * 2;
 shpere.style.width = `${h}px`;
 shpere.style.height = `${h}px`;
 
 shpere.append(orbit);
 
-let currentActive = 0
+let currentActive = 0;
 
-Array.from(document.querySelectorAll('.char-container'))
-  .forEach(el => {
-    const word = el.dataset.word
-    el.addEventListener('click', () => {
-      const index = words.findIndex(w => w === word)
-      if (index === currentActive) return
-      selectWord(word, true)
-      currentActive = index
-    })
-  })
-
-
+Array.from(document.querySelectorAll(".char-container")).forEach((el) => {
+  const word = el.dataset.word;
+  el.addEventListener("click", () => {
+    const index = words.findIndex((w) => w === word);
+    if (index === currentActive) return;
+    selectWord(word, true);
+    currentActive = index;
+  });
+});
 
 setTimeout(() => {
-  selectWord(words[0])
-}, 300)
+  selectWord(words[0]);
+}, 300);
 
 function createOrbit(words, delta, spaceSize = 4) {
   const ul = document.createElement("ul");
   ul.className = "plane";
-  ul.style.transform = 'rotateX(0deg) rotateY(0deg) rotate3d(1, 1, 1, 0deg)'
+  ul.style.transform = "rotateX(0deg) rotateY(0deg) rotate3d(1, 1, 1, 0deg)";
   const lis = createChars(words, spaceSize, delta);
   ul.append(...lis);
   return ul;
@@ -42,25 +39,27 @@ function createOrbit(words, delta, spaceSize = 4) {
 function createChars(words, spaceSize, delta) {
   const chars = [];
   let position = 0;
-  words.forEach(word => {
-    word.split('').forEach(char => {
-      chars.push(createChar(position + symbolWidths[char] * delta / 2, char, word));
+  words.forEach((word) => {
+    word.split("").forEach((char) => {
+      chars.push(
+        createChar(position + (symbolWidths[char] * delta) / 2, char, word)
+      );
       position += symbolWidths[char] * delta;
     });
-    position += symbolWidths['space'] * SPACE_SIZE * delta;
+    position += symbolWidths["space"] * SPACE_SIZE * delta;
   });
   return chars;
 }
 
 function createChar(position, char, word) {
   const li = document.createElement("li");
-  li.className = 'char-container'
-  li.dataset.word = word
+  li.className = "char-container";
+  li.dataset.word = word;
   li.style.transform = `rotate(${position}deg)`;
-  const span = document.createElement('span')
-  span.innerHTML = char
-  span.className = 'char'
-  li.append(span)
+  const span = document.createElement("span");
+  span.innerHTML = char;
+  span.className = "char";
+  li.append(span);
   return li;
 }
 
@@ -72,11 +71,10 @@ function getTotalSymbols(words, spaceSize) {
   return (
     words.reduce(
       (sum, word) =>
-        sum +
-        word.split("").reduce((sum, char) => sum + symbolWidths[char], 0),
+        sum + word.split("").reduce((sum, char) => sum + symbolWidths[char], 0),
       0
     ) +
-    symbolWidths['space'] * spaceSize * words.length
+    symbolWidths["space"] * spaceSize * words.length
   );
 }
 
@@ -99,7 +97,7 @@ function getSymbolsWidths() {
   letters.append(
     ...genCharArray("a", "z")
       .concat("&nbsp;")
-      .map(char => {
+      .map((char) => {
         const el = document.createElement("div");
         el.className = "testLetter";
         el.innerHTML = char;
@@ -107,28 +105,29 @@ function getSymbolsWidths() {
       })
   );
   document.body.append(letters);
-  const symbolWidths = Array.from(letters.children, el => [
-    el.innerHTML === '&nbsp;' ? 'space' : el.innerHTML,
-    el.clientWidth / el.clientHeight
+  const symbolWidths = Array.from(letters.children, (el) => [
+    el.innerHTML === "&nbsp;" ? "space" : el.innerHTML,
+    el.clientWidth / el.clientHeight,
   ]);
-  symbolWidths.push(['height', letters.children[0].clientHeight])
+  symbolWidths.push(["height", letters.children[0].clientHeight]);
   letters.remove();
   return Object.fromEntries(symbolWidths);
 }
 
-
 function selectWord(word, reverse) {
-  Array.from(document.querySelectorAll('.char-container'))
-    .forEach(el => {
-      el.classList.remove('char-container--active')
-    })
-  const els = document.querySelectorAll(`[data-word=${word}]`)
-  Array.from(els).forEach(el => {
-    el.classList.add('char-container--active')
-  })
-  const el = els[0]
-  const lastDeg = parseInt(el.style.transform.replace('rotate(', '').replace('deg)', ''), 10)
-  const rotateDeg = lastDeg
-  const rotate = `rotate(${(reverse ? -rotateDeg : rotateDeg) - 40}deg)`
-  orbit.style.transform = `rotateX(-90deg) rotateY(-15deg) rotate3d(1, 1, 1, 29deg) ${rotate}`
+  Array.from(document.querySelectorAll(".char-container")).forEach((el) => {
+    el.classList.remove("char-container--active");
+  });
+  const els = document.querySelectorAll(`[data-word=${word}]`);
+  Array.from(els).forEach((el) => {
+    el.classList.add("char-container--active");
+  });
+  const el = els[0];
+  const lastDeg = parseInt(
+    el.style.transform.replace("rotate(", "").replace("deg)", ""),
+    10
+  );
+  const rotateDeg = lastDeg;
+  const rotate = `rotate(${(reverse ? -rotateDeg : rotateDeg) - 40}deg)`;
+  orbit.style.transform = `rotateX(-90deg) rotateY(-15deg) rotate3d(1, 1, 1, 29deg) ${rotate}`;
 }
